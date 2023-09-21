@@ -5,6 +5,8 @@ import { bigShoe1 } from "../assets/images";
 import ShoeCard from "../components/ShoeCard";
 import { useState } from "react";
 
+import { v4 as uuidv4 } from 'uuid';
+
 const Hero = () => {
   const [bigShoeImg, setBigShoeImg] = useState(bigShoe1);
   return (
@@ -32,7 +34,7 @@ const Hero = () => {
 
         <div className="flex justify-start items-start flex-wrap w-full mt-20 gap-16">
           {statistics.map((stat) => (
-            <div key={stat.label}>
+            <div key={uuidv4()}>
               <p className="text-4xl font-palanquin font-bold">{stat.value}</p>
               <p className="leading-7 font-montserrat text-slate-gray">
                 {stat.label}
@@ -51,13 +53,9 @@ const Hero = () => {
         />
 
         <div className="flex sm:ga6 gap-4 absolute -bottom-[5%] sm:left-[10%] max-sm:px-6">
-          {shoes.map((shoe) => (
-            <div key={shoe}>
-              <ShoeCard
-                imgURL={shoe}
-                changeBigShoeImage={(shoe) => setBigShoeImg(shoe)}
-                bigShoeImg={bigShoeImg}
-              />
+        {shoes.map((shoe) => (
+            <div key={uuidv4()}>
+              <ShoeCard imgURL={shoe} changeBigShoeImage={(shoe) => setBigShoeImg(shoe)} bigShoeImg={bigShoeImg} />
             </div>
           ))}
         </div>
